@@ -13,4 +13,4 @@
 * PDV: http://www.vim.org/scripts/script.php?script_id=1355
  
  
-*It works in both windows and linux*
+*It works in both windows and linux, enjoy it!*
