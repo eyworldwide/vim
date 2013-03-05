@@ -12,8 +12,10 @@ endif
 
 "编码设置
 set enc=utf-8
-set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
+set fencs=utf-8,gbk,cp936
 set nobomb
+"ctrl+S编码为gbk
+map <C-S> :set fenc=gbk<cr> :w<cr>
 
 "语言设置
 set langmenu=zh_CN.UTF-8
@@ -61,7 +63,7 @@ sy on
 set hlsearch
 map <ESC> :nohlsearch<cr>
 
-"设置zencoding快捷键
+"设置zencoding快捷键为gbk
 let g:user_zen_settings = { 'indentation' : '    ', 'perl' : { 'aliases' : { 'req' : 'require ' }, 'snippets' : { 'use' : "use strict\nuse warnings\n\n", 'warn' : "warn \"|\";", } } }
 let g:user_zen_expandabbr_key = '<c-e>'    "设置为ctrl+e展开
 let g:use_zen_complete_tag = 1
@@ -79,9 +81,8 @@ let NERDTreeBookmarksFile=$VIMFILES."\\.NERDTreeBookmarks" "设置书签文件�
 map <F7> :Calendar<cr>
 
 "vimwiki
-"map <S-F4> :VimwikiAll2HTML<cr>
-"map <F4> :Vimwiki2HTML<cr>
-let g:vimwiki_list = [{'path': 'D:/doc/', 'syntax': 'markdown', 'ext': '.md', 'diary_link_count': 5}]
+let g:vimwiki_list = [{'path': 'D:/ku/doc/vimwiki', 'nested_syntaxes': {'js': 'javascript', 'php': 'php', 'html': 'html', 'css': 'css', 'less': 'less'}, 'path_html': 'D:/ku/doc/vimwiki/output/html', 'template_path': 'D:/ku/doc/vimwiki/output/tpl/', 'template_default': 'common.htm', 'diary_link_count': 5}, {'path': 'D:/ku/doc/vimark', 'syntax': 'markdown', 'ext': '.md'}]
+map <F12> :VimwikiToggleListItem<cr>
 
 "Taglist
 let Tlist_Show_One_File = 1 "不同时显示多个文件的Tag，只显示当前文件
@@ -103,6 +104,9 @@ let g:indent_guides_color_change_percent = 3
 
 " php doc
 source $VIMFILES/plugin/php-doc.vim 
-inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i 
-nnoremap <C-P> :call PhpDocSingle()<CR> 
-vnoremap <C-P> :call PhpDocRange()<CR> 
+inoremap <F6> <ESC>:call PhpDocSingle()<CR>i 
+nnoremap <F6> :call PhpDocSingle()<CR> 
+vnoremap <F6> :call PhpDocRange()<CR> 
+
+" less
+au BufNewFile,BufRead *.less set filetype=less
