@@ -4,7 +4,7 @@ if has("win32")
     let $V = $HOME.'/_vimrc'
 
 	"设置字体
-	set guifont=Consolas:h10
+	set guifont=Consolas:h11
 else
     let $VIMFILES = $HOME.'/.vim'
     let $V = $HOME.'/.vimrc'
@@ -12,10 +12,8 @@ endif
 
 "编码设置
 set enc=utf-8
-set fencs=utf-8,gbk,cp936
+set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
 set nobomb
-"ctrl+S编码为gbk
-map <C-S> :set fenc=gbk<cr> :w<cr>
 
 "语言设置
 set langmenu=zh_CN.UTF-8
@@ -63,7 +61,12 @@ sy on
 set hlsearch
 map <ESC> :nohlsearch<cr>
 
-"设置zencoding快捷键为gbk
+"自动换行 支持中文
+set tw=78 fo+=Mm
+set colorcolumn=79
+hi ColorColumn guibg=#354248
+
+"设置zencoding快捷键
 let g:user_zen_settings = { 'indentation' : '    ', 'perl' : { 'aliases' : { 'req' : 'require ' }, 'snippets' : { 'use' : "use strict\nuse warnings\n\n", 'warn' : "warn \"|\";", } } }
 let g:user_zen_expandabbr_key = '<c-e>'    "设置为ctrl+e展开
 let g:use_zen_complete_tag = 1
@@ -81,7 +84,8 @@ let NERDTreeBookmarksFile=$VIMFILES."\\.NERDTreeBookmarks" "设置书签文件�
 map <F7> :Calendar<cr>
 
 "vimwiki
-let g:vimwiki_list = [{'path': 'D:/ku/doc/vimwiki', 'nested_syntaxes': {'js': 'javascript', 'php': 'php', 'html': 'html', 'css': 'css', 'less': 'less'}, 'path_html': 'D:/ku/doc/vimwiki/output/html', 'template_path': 'D:/ku/doc/vimwiki/output/tpl/', 'template_default': 'common.htm', 'diary_link_count': 5}, {'path': 'D:/ku/doc/vimark', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [{'path': 'E:/ku/doc/vimwiki', 'nested_syntaxes': {'py': 'python', 'js': 'javascript', 'php': 'php', 'html': 'html', 'css': 'css', 'less': 'less', 'sql': 'mysql'}, 'path_html': 'E:/ku/doc/vimwiki/output/html', 'template_path': 'E:/ku/doc/vimwiki/output/tpl/', 'template_default': 'common.htm', 'diary_link_count': 5}, {'path': 'E:/ku/doc/vimark', 'syntax': 'markdown', 'ext': '.md'}]
+" todo list
 map <F12> :VimwikiToggleListItem<cr>
 
 "Taglist
@@ -104,7 +108,7 @@ let g:indent_guides_color_change_percent = 3
 
 " php doc
 source $VIMFILES/plugin/php-doc.vim 
-inoremap <F6> <ESC>:call PhpDocSingle()<CR>i 
+inoremap <F6><ESC>:call PhpDocSingle()<CR> 
 nnoremap <F6> :call PhpDocSingle()<CR> 
 vnoremap <F6> :call PhpDocRange()<CR> 
 
