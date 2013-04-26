@@ -1,7 +1,7 @@
-##Vim for front end engineers.
+#Vim for front end engineers.
 *It works in both windows and linux, enjoy it!*
 
-#### Included plugins:
+###Included plugins:
 * html & css:
 	- zencoding: http://www.vim.org/scripts/script.php?script_id=2981
 * javascript: 
