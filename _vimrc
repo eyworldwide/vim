@@ -73,21 +73,14 @@ colorscheme evening
 
 " MacVim下的字体配置
 if has("gui_macvim")
-	set guifont=Menlo:h14
-	"set guifont=Monaco:h13
-	set guifontwide=Hei:h14
+	set guifont=Monaco:h15
+	set guifontwide=Hei:h15
 endif
 
 " gvim下的字体配置
 if has("win32")
 	set guifont=Consolas:h11
 endif
-
-"去除菜单栏和工具栏
-set go=
-
-"始终显示行号
-set nu!
 
 "Tab键的宽度
 set shiftwidth=4
@@ -104,6 +97,13 @@ sy on
 
 "智能补全
 set completeopt=longest,menu
+
+"去除菜单栏和工具栏
+set go=
+
+"始终显示行号
+set nu!
+hi LineNr guifg=#666666
 
 "自动换行 支持中文
 set tw=78 fo+=Mm
