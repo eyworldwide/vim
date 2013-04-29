@@ -15,6 +15,8 @@ else
     let $V = $HOME.'/.vimrc'
 endif
 
+let $VIMWIKI = 'E:/ku/doc/'
+
 "编码设置
 set enc=utf-8
 set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
@@ -173,7 +175,7 @@ let NERDTreeBookmarksFile=$VIMFILES."\\.NERDTreeBookmarks"
 "vimwiki
 let g:vimwiki_list = [
 \	{
-\		'path': $HOME.'/ku/doc/vimwiki',
+\		'path': $VIMWIKI.'vimwiki',
 \		'nested_syntaxes': {
 \			'py': 'python',
 \			'js': 'javascript',
@@ -183,14 +185,14 @@ let g:vimwiki_list = [
 \			'less': 'less',
 \			'sql': 'mysql'
 \		},
-\		'path_html': $HOME.'/ku/doc/vimwiki/output/html',
-\		'template_path': $HOME.'/ku/doc/vimwiki/output/tpl/',
+\		'path_html': $VIMWIKI.'vimwiki/output/html',
+\		'template_path': $VIMWIKI.'vimwiki/output/tpl/',
 \		'template_default': 'common.htm',
 \		'diary_link_count': 5
 \	},
 \	{
 \		'template_default': 'common.htm', 
-\		'path': $HOME.'/ku/doc/vimark',
+\		'path': $VIMWIKI.'vimark',
 \		'syntax': 'markdown',
 \		'ext': '.md',
 \		'diary_link_count': 5
