@@ -1,5 +1,5 @@
 #Vim for front end engineers.
-*It works in both windows and linux, enjoy it!*
+*It works in windows & linux & mac, enjoy it!*
 
 ###Included plugins:
 * html & css:
