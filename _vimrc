@@ -35,35 +35,6 @@ set undofile
 set undodir=$VIMFILES/\_undodir
 set undolevels=1000 "maximum number of changes that can be undone
 
-"MacVim
-if has("gui_macvim")
-
-	"按 \\ 切换全屏
-	let s:lines=&lines
-	let s:columns=&columns
-
-	func! FullScreenEnter()
-		set lines=999 columns=999
-		set fu
-	endf
-
-	func! FullScreenLeave()
-		let &lines=s:lines
-		let &columns=s:columns
-		set nofu
-	endf
-
-	func! FullScreenToggle()
-		if &fullscreen
-			call FullScreenLeave()
-		else
-			call FullScreenEnter()
-		endif
-	endf
-
-	nmap <Leader><Leader>  :call FullScreenToggle()<cr>
-endif
-
 "=---------------------------------------------------------------------------=
 " style
 "=---------------------------------------------------------------------------=
@@ -203,7 +174,7 @@ let g:vimwiki_list = [
 map <F7> :Calendar<cr>
 
 " todo list
-map <F12> :VimwikiToggleListItem<cr>
+map <F8> :VimwikiToggleListItem<cr>
 
 "=---------------------------------------------------------------------------=
 " Taglist
@@ -244,4 +215,4 @@ vnoremap <F6> :call PhpDocRange()<CR>
 "=---------------------------------------------------------------------------=
 " less
 "=---------------------------------------------------------------------------=
-au BufNewFile,BufRead *.less set filetype=less
+au BufNewFile,BufRead *.less set filetype=css
