@@ -2376,7 +2376,7 @@ klass:              do {
                 no_space_only();
             }
             advance(',');
-            spaces();
+            // spaces();
         }
     }
 
@@ -2390,7 +2390,7 @@ klass:              do {
             }
             advance(';');
             if (semicolon_coda[next_token.id] !== true) {
-                spaces();
+                // spaces();
             }
         }
     }
@@ -2653,8 +2653,8 @@ klass:              do {
         x.led = function (left) {
             this.arity = 'infix';
             if (!w) {
-                spaces(prev_token, token);
-                spaces();
+                // spaces(prev_token, token);
+                // spaces();
             }
             if (!option.bitwise && this.bitwise) {
                 warn('unexpected_a', this);
@@ -2904,7 +2904,7 @@ klass:              do {
             if (the_statement.arity === 'statement') {
                 if (the_statement.id === 'switch' ||
                         (the_statement.block && the_statement.id !== 'do')) {
-                    spaces();
+                    // spaces();
                 } else {
                     semicolon();
                 }
@@ -2986,7 +2986,7 @@ klass:              do {
 
         in_block = ordinary;
         scope = Object.create(scope);
-        spaces();
+        // spaces();
         if (next_token.id === '{') {
             advance('{');
             step_in();
@@ -3057,7 +3057,7 @@ klass:              do {
 
                 } else {
                     if (!option.undef) {
-                        warn('used_before_a', token);
+                        // warn('used_before_a', token);
                     }
                     scope[name] = variable = {
                         string: name,
@@ -3218,12 +3218,12 @@ klass:              do {
         step_in('?');
         that.first = expected_condition(expected_relation(left));
         that.second = expression(0);
-        spaces();
+        // spaces();
         step_out();
         var colon = next_token;
         advance(':');
         step_in(':');
-        spaces();
+        // spaces();
         that.third = expression(10);
         that.arity = 'ternary';
         if (are_similar(that.second, that.third)) {
@@ -3618,15 +3618,15 @@ klass:              do {
         step_out(')', this);
         if (value.id === 'function') {
             switch (next_token.id) {
-            case '(':
-                warn('move_invocation');
-                break;
+            // case '(':
+            //     warn('move_invocation');
+            //     break;
             case '.':
             case '[':
                 warn('unexpected_a');
                 break;
             default:
-                warn('bad_wrap', this);
+                // warn('bad_wrap', this);
             }
         }
         return value;
@@ -3836,7 +3836,7 @@ klass:              do {
         }
         func.writeable = false;
         func.first = funct['(params)'] = function_params();
-        one_space();
+        // one_space();
         func.block = block(false);
         if (funct['(arguments)']) {
             func.first.forEach(function (value) {
@@ -3902,7 +3902,7 @@ klass:              do {
                 }
                 comma();
                 set = next_token;
-                spaces();
+                // spaces();
                 edge();
                 advance('set');
                 set.string = '';
@@ -3929,7 +3929,7 @@ klass:              do {
                     stop('missing_property');
                 }
                 advance(':');
-                spaces();
+                // spaces();
                 name.first = expression(10);
             }
             this.first.push(name);
@@ -3999,9 +3999,9 @@ klass:              do {
             if (next_token.id === '=') {
                 assign = next_token;
                 assign.first = name;
-                spaces();
+                // spaces();
                 advance('=');
-                spaces();
+                // spaces();
                 if (next_token.id === 'undefined') {
                     warn('unnecessary_initialize', token, id);
                 }
@@ -4028,7 +4028,7 @@ klass:              do {
                 indent.open = false;
                 indent.at -= option.indent;
             }
-            spaces();
+            // spaces();
             edge();
         }
         var_mode = null;
@@ -4037,7 +4037,7 @@ klass:              do {
     });
 
     stmt('function', function () {
-        one_space();
+        // one_space();
         if (in_block) {
             warn('function_block', token);
         }
@@ -4054,7 +4054,7 @@ klass:              do {
 
     prefix('function', function () {
         if (!option.anon) {
-            one_space();
+            // one_space();
         }
         var id = optional_identifier();
         if (id) {
@@ -4089,7 +4089,7 @@ klass:              do {
 
     stmt('if', function () {
         var paren = next_token;
-        one_space();
+        // one_space();
         advance('(');
         step_in('control');
         no_space();
@@ -4098,12 +4098,12 @@ klass:              do {
         this.first = expected_condition(expected_relation(expression(0)));
         no_space();
         step_out(')', paren);
-        one_space();
+        // one_space();
         this.block = block(true);
         if (next_token.id === 'else') {
-            one_space();
+            // one_space();
             advance('else');
-            one_space();
+            // one_space();
             this['else'] = next_token.id === 'if' || next_token.id === 'switch'
                 ? statement(true)
                 : block(true);
@@ -4125,13 +4125,13 @@ klass:              do {
         if (option.adsafe) {
             warn('adsafe_a', this);
         }
-        one_space();
+        // one_space();
         this.arity = 'statement';
         this.block = block(false);
         if (next_token.id === 'catch') {
-            one_space();
+            // one_space();
             advance('catch');
-            one_space();
+            // one_space();
             paren = next_token;
             advance('(');
             step_in('control');
@@ -4149,14 +4149,14 @@ klass:              do {
             advance();
             no_space();
             step_out(')', paren);
-            one_space();
+            // one_space();
             this.second = block(false);
             scope = old_scope;
         }
         if (next_token.id === 'finally') {
-            one_space();
+            // one_space();
             advance('finally');
-            one_space();
+            // one_space();
             this.third = block(false);
         } else if (!this.second) {
             stop('expected_a_b', next_token, 'catch', artifact());
@@ -4165,7 +4165,7 @@ klass:              do {
     });
 
     labeled_stmt('while', function () {
-        one_space();
+        // one_space();
         var paren = next_token;
         funct['(breakage)'] += 1;
         funct['(loopage)'] += 1;
@@ -4180,7 +4180,7 @@ klass:              do {
         }
         no_space();
         step_out(')', paren);
-        one_space();
+        // one_space();
         this.block = block(true);
         if (this.block.disrupt) {
             warn('strange_loop', prev_token);
@@ -4213,7 +4213,7 @@ klass:              do {
         }
 
         funct['(breakage)'] += 1;
-        one_space();
+        // one_space();
         advance('(');
         no_space();
         step_in();
@@ -4221,7 +4221,7 @@ klass:              do {
         this.first = expected_condition(expected_relation(expression(0)));
         no_space();
         step_out(')', the_case);
-        one_space();
+        // one_space();
         advance('{');
         step_in();
         in_block = true;
@@ -4231,7 +4231,7 @@ klass:              do {
             cases.forEach(find_duplicate_case);
             the_case.first = [];
             the_case.arity = 'case';
-            spaces();
+            // spaces();
             edge('case');
             advance('case');
             for (;;) {
@@ -4248,11 +4248,11 @@ klass:              do {
                 if (next_token.id !== 'case') {
                     break;
                 }
-                spaces();
+                // spaces();
                 edge('case');
                 advance('case');
             }
-            spaces();
+            // spaces();
             the_case.second = statements();
             if (the_case.second && the_case.second.length > 0) {
                 particular = the_case.second[the_case.second.length - 1];
@@ -4272,14 +4272,14 @@ klass:              do {
             warn('missing_a', next_token, 'case');
         }
         if (next_token.id === 'default') {
-            spaces();
+            // spaces();
             the_case = next_token;
             the_case.arity = 'case';
             edge('case');
             advance('default');
             no_space_only();
             advance(':');
-            spaces();
+            // spaces();
             the_case.second = statements();
             if (the_case.second && the_case.second.length > 0) {
                 particular = the_case.second[the_case.second.length - 1];
@@ -4290,7 +4290,7 @@ klass:              do {
             this.second.push(the_case);
         }
         funct['(breakage)'] -= 1;
-        spaces();
+        // spaces();
         step_out('}', this);
         in_block = old_in_block;
         return this;
@@ -4307,16 +4307,16 @@ klass:              do {
     labeled_stmt('do', function () {
         funct['(breakage)'] += 1;
         funct['(loopage)'] += 1;
-        one_space();
+        // one_space();
         this.arity = 'statement';
         this.block = block(true);
         if (this.block.disrupt) {
             warn('strange_loop', prev_token);
         }
-        one_space();
+        // one_space();
         advance('while');
         var paren = next_token;
-        one_space();
+        // one_space();
         advance('(');
         step_in();
         no_space();
@@ -4346,7 +4346,7 @@ klass:              do {
             blok = block(true);
         } else {
             step_in('control');
-            spaces(this, paren);
+            // spaces(this, paren);
             no_space();
             if (next_token.id === 'var') {
                 stop('move_var');
@@ -4447,7 +4447,7 @@ klass:              do {
                 }
                 no_space();
                 step_out(')', paren);
-                one_space();
+                // one_space();
                 blok = block(true);
             }
         }
@@ -4513,9 +4513,9 @@ klass:              do {
             }
             this.first = expression(20);
         }
-        if (peek(0).id === '}' && peek(1).id === 'else') {
-            warn('unexpected_else', this);
-        }
+        // if (peek(0).id === '}' && peek(1).id === 'else') {
+        //     warn('unexpected_else', this);
+        // }
         return this;
     });
 
@@ -5832,7 +5832,7 @@ klass:              do {
                         warn('bad_name_a');
                     }
                     option.white = false;
-                    spaces();
+                    // spaces();
                     attribute = next_token.string;
                     option.white = old_white;
                     advance();
