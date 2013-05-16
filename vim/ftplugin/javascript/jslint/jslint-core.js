@@ -3428,11 +3428,11 @@ klass:              do {
         return that;
     });
 
-    suffix('++');
-    prefix('++');
+    // suffix('++');
+    // prefix('++');
 
-    suffix('--');
-    prefix('--');
+    // suffix('--');
+    // prefix('--');
     prefix('delete', function () {
         one_space();
         var p = expression(0);
