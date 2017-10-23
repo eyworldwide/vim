@@ -43,7 +43,7 @@ filetype plugin indent on    " required
 "=---------------------------------------------------------------------------=
 "=---------------------------------------------------------------------------=
 
-"定义路径变量
+" define path
 if has("win32")
     let $VIMFILES = $HOME.'/vimfiles'
     let $V = $HOME.'/_vimrc'
@@ -54,21 +54,21 @@ endif
 
 let $VIMWIKI = $HOME.'/htdocs/cloud/doc/'
 
-"编码设置
+" encoding settings
 set enc=utf-8
 set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
 set fileencodings=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
 set nobomb
 
-"语言设置
+" language settings
 set langmenu=zh_CN.UTF-8
 language message zh_CN.UTF-8
 set helplang=cn
 
-"禁止生成临时文件
+" forbid generating temp file
 set nobackup
 
-"重启后撤销历史可用 persistent undo 
+" persistent undo 
 set undofile
 set undodir=$VIMFILES/\_undodir
 set undolevels=1000 "maximum number of changes that can be undone
@@ -77,64 +77,56 @@ set undolevels=1000 "maximum number of changes that can be undone
 " style
 "=---------------------------------------------------------------------------=
 
-"配色方案
+" scheme
 colorscheme evening
 
-"设置字体
+" font
 
-" MacVim下的字体配置
+" font for MacVim
 if has("gui_macvim")
 	set guifont=Monaco:h15
 	"set guifontwide=Hei:h15
 endif
 
-" gvim下的字体配置
+" font for gvim
 if has("win32")
 	set guifont=Consolas:h11
 endif
 
-"Tab键的宽度
+" tab width
 set shiftwidth=2
 set tabstop=2
 
-"自动缩进
+" auto indent
 set ai!
 
-"添加类型检测
+" file type check
 filetype plugin indent on
 
-"语法高亮
+" syntax highlight
 sy on
 
-"智能补全
+" auto complete
 set completeopt=longest,menu
 
-"去除菜单栏和工具栏
+" hide top menu
 set go=
 
-"始终显示行号
+" show line number
 set nu!
 hi LineNr guifg=#666666
 
-"自动换行 支持中文
+" auto line break, support Chinese
 "set tw=78 fo+=Mm
 "set colorcolumn=79
 "hi ColorColumn guibg=#354248
 
 "=---------------------------------------------------------------------------=
-" search
+" search & replace
 "=---------------------------------------------------------------------------=
-
-"忽略大小写
 set ignorecase
-
-"搜索逐字符高亮
 set incsearch
-
-"行内替换
 set gdefault
-
-"搜索高亮
 set hlsearch
 map <ESC> :nohlsearch<cr>
 
@@ -161,7 +153,7 @@ let g:user_zen_settings = {
 \		}
 \	}
 \}
-let g:user_zen_expandabbr_key = '<c-e>'    "设置为ctrl+e展开
+let g:user_zen_expandabbr_key = '<c-e>'
 let g:use_zen_complete_tag = 1
 
 "=---------------------------------------------------------------------------=
@@ -169,16 +161,9 @@ let g:use_zen_complete_tag = 1
 "=---------------------------------------------------------------------------=
 map <F4> :NERDTreeToggle<CR>
 
-"将NERDTree的窗口设置在窗口的左边
 let NERDTreeWinPos ="left" 
-
-"当打开NERDTree窗口时，自动显示Bookmarks
 let NERDTreeShowBookmarks=1 
-
-"设置书签文件为VIM根目录
 let NERDTreeBookmarksFile=$VIMFILES."\\.NERDTreeBookmarks" 
-
-"忽略一下文件的显示
 let NERDTreeIgnore=['node_modules']
 
 "=---------------------------------------------------------------------------=
@@ -192,6 +177,7 @@ let g:vimwiki_list = [
 \			'py': 'python',
 \			'glsl': 'glsl',
 \			'js': 'javascript',
+\			'java': 'java',
 \			'php': 'php',
 \			'html': 'html',
 \			'css': 'css',
@@ -221,24 +207,12 @@ map <F8> :VimwikiToggleListItem<cr>
 "=---------------------------------------------------------------------------=
 " Taglist
 "=---------------------------------------------------------------------------=
-"不同时显示多个文件的Tag，只显示当前文件
 let Tlist_Show_One_File = 1 
-
-"如果Taglist窗口是最后一个窗口时退出VIM
 let Tlist_Exit_OnlyWindow = 1 
-
- "让Taglist窗口在右侧显示
 let Tlist_Use_Right_Window = 1
-
-"设置当执行TlistToggle时，定位当前光标到Tlist窗口
 let Tlist_GainFocus_On_ToggleOpen = 1
-
-"针对javascript
 let Tlist_JS_Settings = 'javascript;s:string;a:array;o:object;f:function'  
-
-"设置快捷键
 map <F3> :Tlist<CR>
-
 
 "=---------------------------------------------------------------------------=
 " indent guide
@@ -247,15 +221,16 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_color_change_percent = 3
 
 "=---------------------------------------------------------------------------=
-" php doc
-"=---------------------------------------------------------------------------=
-" source $VIMFILES/plugin/php-doc.vim 
-" inoremap <F6><ESC>:call PhpDocSingle()<CR> 
-" nnoremap <F6> :call PhpDocSingle()<CR> 
-" vnoremap <F6> :call PhpDocRange()<CR> 
-
-"=---------------------------------------------------------------------------=
 " less
 "=---------------------------------------------------------------------------=
 au BufNewFile,BufRead *.less set filetype=css
+
+"=---------------------------------------------------------------------------=
+" typescript
+"=---------------------------------------------------------------------------=
 au BufNewFile,BufRead *.ts set filetype=javascript
+
+"=---------------------------------------------------------------------------=
+" processing
+"=---------------------------------------------------------------------------=
+map <F5> :make<cr>
